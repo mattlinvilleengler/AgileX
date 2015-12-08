@@ -1,4 +1,7 @@
 AgileX, a project managment tool
+
+Video Walkthrough.   https://youtu.be/l1UAIBPXgsY   ----
+
 I built AgileX as a school project. It's currently one and a half weeks in development.
 It's built with html / css / javascript / angular / node / express / and mongodb.
 It has many features and still has many to be added.
