@@ -1,0 +1,290 @@
+<!------------------------------------------------Header----------------------------------------------->
+
+
+<div class="row" style="margin-top: 0px; ">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <h1><span class="dash">Dashboard</span><span class="dash1">{{ "Welcome " +  hombre.name}}</span><span class="dash2">{{ "You Have " + userNewMessages + " New Messages"}}</span></h1>
+        <hr/>
+    </div>
+</div>
+
+
+<!------------------------------------------------Company Info----------------------------------------------->
+
+<div class="row" style="margin-top: 0px; margin-bottom:50px;">
+
+    <div ng-show="showCompanyDiv">
+
+        <div class="col-xs-12 col-md-5 col-md-offset-2">
+            <div class="img-rounded companybox">
+                <div class="innerbox" >
+                    <h3 class="companyHead">Company Info</h3></div>
+            </div>
+        </div>
+
+
+<!------------------------------------------------New York Times Display----------------------------------------------->
+        
+        <div class="col-xs-12 col-md-3" >
+            <div class="img-rounded timesBox" >
+                <div class="timesBoxHead">
+                    <h3 class="companyHead">New York Times</h3></div>
+                <div class="timesSearch">
+                    <input class="form-control timesSearchInput"  placeholder="Search NYT" ng-model="NYTSearch" ng-change="newYorkTimesSearch()"></input><span class="glyphicon glyphicon-search" style="font-size:15px; margin-left:10px;"></span>
+                    </div>
+
+                <div class="timesSearchDisplay">
+                    <div class="timesArticle" ng-repeat="story in nytStories">
+                        <hr/>
+                        <h2>{{story.headline.main}}</h2>
+                        <hr/>
+                        <h4><span>{{story.byline.original}}</span><span style="margin-left: 10px; font-size: 15px;">{{story.source}}</span></h4>
+                        <hr/>
+                        <h4>{{story.pubdate}}</h4>
+                        <p>{{story.snippet}}</p>
+                        <a href="{{story.web_url}}">Read More</a>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!----------------------------------Next Section Button----------------------------------------------->
+        <div class="col-xs-12 col-md-1">
+            <button ng-click="Dashboard()" class="nextButton"><span style=" font-size: 35px; color: white;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+        </div>
+    </div>
+
+<!------------------------------------------------Messages----------------------------------------------->
+    
+    
+    <div ng-show="showMessagesDiv">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <!------------------------------------------------Header----------------------------------------------->
+
+            <h1><span class="messagesHead">Messages</span><span><input type="text" class="form-control messageSearch"  placeholder="Search" ng-model="messageSearch"></input></span><span class="glyphicon glyphicon-search" style="font-size:15px; margin-left:10px;"></span><span><button class="newMessage" data-target="#messageModal" data-toggle="modal">New</button></span></h1>
+            <hr/>
+            <div style="margin-bottom:50px;">
+
+
+
+             <!------------------------------------------------Message search and Display ----------------------------------------------->
+                
+                <div>
+
+                    <div ng-repeat=" message in userMessages | filter: messageSearch" style="float:left; margin: 10px; margin-bottom: 20px;">
+                        <div class="hi" style="overflow: auto; padding: 15px;" ng-mouseout="MessageIsRead(message.read, message.id)">
+                            <div ng-show="message.show ">
+                                <p style="font-style:bold">{{"From | " + message.from }}</p>
+                                <hr class="cool" />
+                                <p style="color:grey">{{"Subject | "+ message.subject}}</p>
+                                <hr class="cool" />
+                                <p style="color:grey">{{message.text}}</p>
+                                <hr class="cool" />
+                                <button class="replyMesSend" ng-click="ActivateMessage( message.id )">Reply</button>
+                                <button class="removeBt" ng-click="RemoveMessage(message.id)">x</button>
+                            </div>
+                            <div ng-show=" message.reply ">
+                                <input type="text" placeholder="Subject" class="snap replyMes" style="" ng-model="messageIn.subject" />
+                                <textarea ng-model="messageIn.text" type="textarea" rows="2" placeholder="Message" class="snap replyMes"></textarea>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="checkbox" style="background-color: transparent" ng-model="messageIn.urgent">Urgent</label>
+                                </div>
+
+                                <button class="replyMesSend" ng-click="SendMessageIn( message.from )">Send</button>
+                                <button class="removeBt" ng-click="RemoveMessage(message.id)">x</button>
+                            </div>
+                        </div>
+                        <div style="max-width: 75px;">
+                        <h5 >{{ message.from }}</h5>
+                        <h7 style="color: grey; font-style: italic;">{{ message.dateCreated }}</h7>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <br/>
+        
+        
+        </div>
+
+   <!----------------------------------Next Section Button----------------------------------------------->
+        <div class="col-xs-12 col-md-1">
+            <button ng-click="Dashboard1()" class="nextButton"><span style=" font-size: 35px; color: white;" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+        </div>
+    </div>
+
+
+
+    </div>
+</div>
+</div>
+
+
+ <!----------------------------------Message Send Modal----------------------------------------------->
+<div class="modal fade img-rounded" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog img-rounded">
+        <div class="modal-content mesContent ">
+            <div class="modal-header mesHeader img-rounded">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><span class="heading-one" style="color: white">Message</span></h4>
+            </div>
+            <div class="modal-body" style="background-color: rgba(250, 250, 250, 1)">
+
+
+                <select class="snapM form-control mesX" ng-model="message.to" >
+                    <option ng-repeat="users in userNames">{{ users.name }}</option>
+                </select>
+
+                <input class="snapM form-control mesX" type="text" ng-model="message.subject" placeholder="Subject" />
+                <textarea class="snapM form-control mesX" rows="2" type="text" ng-model="message.text" placeholder="Message" style="height:80px"></textarea>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="checkbox" style="background-color: white" ng-model="message.urgent">Urgent</label>
+                </div>
+
+                <span ng-if="register_success" style="color: cyan">{{ register_message }}</span>
+
+            </div>
+            <div class="modal-footer mesFooter img-rounded">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-default" ng-click="SendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!------------------------------------------------Organized messages by urgent and New ----------------------------------------------->
+
+            <!--       
+                
+                <div >
+                    <table>
+                        <tr style="border-bottom: solid; border-color: white;">
+                            <td style="padding:10px; vertical-align: bottom;" ng-repeat="message in userMessages | filter: messageSearch">
+                                <div class="hi" style="padding: 15px; overflow: auto">
+                                    <div div ng-show="message.show ">
+                                        <p style="font-style:bold">{{"From | " + message.from }}</p>
+                                        <p style="color:navy">{{"Subject | "+ message.subject}}</p>
+                                        <p style="color:grey">{{message.text}}</p>
+                                        <button style="background: transparent; border: none; float:left; padding-left: 0px; margin-left: 0px" ng-click="ActivateMessage( message.id )">Reply</button>
+                                        <button style="background: transparent; border: none; float:right;" ng-click="RemoveMessage()">x</button>
+                                    </div>
+                                    <div ng-show=" message.reply ">
+                                        <input type="text" placeholder="Subject" class="snap" style="background:transparent; padding-left: 0px; margin-left:                          0px;" ng-model="messageIn.subject" />
+                                        <textarea ng-model="messageIn.text" type="textarea" rows="2" placeholder="Message" class="snap" style="background:transparent; padding-left: 0px; margin-left:0px;"></textarea>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="checkbox" style="background-color: transparent" ng-model="messageIn.urgent">Urgent</label>
+                                        </div>
+
+                                        <button style="background: transparent; border: none; float:left; padding-left: 0px; margin-left:                          0px;" ng-click="SendMessageIn( message.from )">Send</button>
+                                        <button style="background: transparent; border: none; float:right;" ng-click="RemoveMessage()">x</button>
+                                    </div>
+                                </div>
+                                <h5 style="color: white">{{ message.from }}</h5>
+                </div>
+                </td>
+                </tr>
+                </table>
+            </div>
+            <br/>
+
+
+
+
+            <div>
+                <table>
+                    <tr style="border-bottom: solid; border-color: white;">
+                        <td style="vertical-align: bottom;  margin-right: 20px; padding-bottom: 20px; padding-right: 20px;">
+                            <h3 style="color: white; margin-bottom:0px;">Urgent</h3></td>
+                        <td style="padding:10px; vertical-align: bottom;" ng-repeat="message in userMessages | filter: {urgent: true}">
+                            <div class="hi" style="padding: 15px; overflow: auto">
+                                <div div ng-show="message.show ">
+                                    <p style="font-style:bold">{{"From | " + message.from }}</p>
+                                    <p style="color:navy">{{"Subject | "+ message.subject}}</p>
+                                    <p style="color:grey">{{message.text}}</p>
+                                    <button style="background: transparent; border: none; float:left; padding-left: 0px; margin-left: 0px" ng-click="ActivateMessage( message.id )">Reply</button>
+                                    <button style="background: transparent; border: none; float:right;" ng-click="RemoveMessage()">x</button>
+                                </div>
+                                <div ng-show=" message.reply ">
+                                    <input type="text" ng-model="messageIn.subject" placeholder="Subject" class="snap" style="background:transparent; padding-left: 0px; margin-left:                          0px;" />
+                                    <textarea type="textarea" ng-model="messageIn.text" rows="2" placeholder="Message" class="snap" style="background:transparent; padding-left: 0px; margin-left:0px;"></textarea>
+
+                                    <button style="background: transparent; border: none; float:left; padding-left: 0px; margin-left:                          0px;" ng-click="SendMessageIn( message.from )">Send</button>
+                                    <button style="background: transparent; border: none; float:right;" ng-click="RemoveMessage()">x</button>
+                                </div>
+                            </div>
+                            <h5 style="color: white">{{ message.from }}</h5>
+            </div>
+            </td>
+            </tr>
+            </table>
+        </div>
+        <br/>
+
+        <div style="margin-top:0px; ">
+            <br/>
+
+
+            <div>
+                <table>
+                    <tr style="border-bottom: solid; border-color: white;">
+                        <td style="vertical-align: bottom;  margin-right: 20px; padding-bottom: 20px; padding-right: 20px;">
+                            <h3 style="color: white; margin-bottom:0px;">New</h3></td>
+                        <td style="padding:10px; vertical-align: bottom;" ng-repeat="message in userMessages | filter: {read: false} ">
+                            <div class="hi2" style="padding: 15px; overflow: auto">
+                                <div div ng-show="message.show ">
+                                    <p style="font-style:bold">{{"From | " + message.from }}</p>
+                                    <p style="color:navy">{{"Subject | "+ message.subject}}</p>
+                                    <p style="color:grey">{{message.text}}</p>
+                                    <button style="background: transparent; border: none; float:left; padding-left: 0px; margin-left: 0px" ng-click="ActivateMessage( message.id )">Reply</button>
+                                    <button style="background: transparent; border: none; float:right;" ng-click="RemoveMessage()">x</button>
+                                </div>
+                                <div ng-show=" message.reply ">
+                                    <input type="text" ng-model="messageIn.subject" placeholder="Subject" class="snap" style="background:transparent; padding-left: 0px; margin-left:                          0px;" />
+                                    <textarea type="textarea" rows="2" ng-model="messageIn.text" placeholder="Message" class="snap" style="background:transparent; padding-left: 0px; margin-left:0px;"></textarea>
+
+                                    <button style="background: transparent; border: none; float:left; padding-left: 0px; margin-left:                          0px;" ng-click="SendMessageIn( message.from )">Send</button>
+                                    <button style="background: transparent; border: none; float:right;" ng-click="RemoveMessage()">x</button>
+                                </div>
+                            </div>
+                            <h5 style="color: white">{{message.from}}</h5>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+-->
+
+<!--
+                    <div class="responsive col-xs-10 col-md-2" ng-repeat="feed in appData" >
+<div style="width:100%; border: solid; padding: 5px;">
+<center>
+    <h5><span >{{ feed.name + " | " }}</span><span style="color:green">{{ feed.pchange + "%" }}</span><span style="color:grey">{{" | " + (feed.close | currency) }}</span></h5>
+    </center>
+    </div>
+</div>
+
+-->
+
+
+
+
+<!--
+     <h4><span ng-show="{{ message.urgent }}" style="color: red; padding-right:10px">Urgent | </span><span style="font-size:15px;">{{"FROM: " + message.from + " | "}}</span><span style="padding-left:10px; font-size:15px; color: grey;">{{"Subject: "+ message.subject}}</span><span><button class="btn btn-default" type="button" data-toggle="collapse" data-target="#{{ $index }}" aria-expanded="false" aria-controls="collapseExample" style="float: right; border: none; background-color: transparent; color: #4285f4">+</button></span></h4>
+     
+     <div class="collapse" id="{{ $index }}">
+         <hr/>
+  <p style="margin-left:20px;">{{message.text}}</p><hr/>
+         <span>
+         <button class="btn btn-info" data-toggle="modal" data-target="#messageModal" type="button" style=" border: none; background-color: #4285f4; margin-bottom:35px; margin-left:20px;">Reply</button>
+        </span><span>
+         <button class="btn btn-default" type="button" ng-click="DeleteMessage(message.id)" style="margin-bottom:35px; margin-left:15px;">Delete</button>
+         </span>
+         </div>
+-->

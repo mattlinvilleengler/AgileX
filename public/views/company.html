@@ -1,0 +1,59 @@
+
+<!------------------------------------------------register / update company Buttons ----------------------------------------------->
+
+<div class="col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" ng-show="buttons" style="margin-top: 95px;">
+    <center>
+        <h1 class="regHead">CompanyX</h1><br/>
+        <span><button class="btn btn-default btn-lg btnLogin" ng-click="companySetupShow()" >Setup</button></span><span style="margin-left:25px; "><button class="btn btn-default btn-lg btnLoginOther" ng-click="companyUpdateShow()">Update</button></span>
+
+    </center>
+</div>
+
+
+
+<!------------------------------------------------ register company ----------------------------------------------->
+
+<div class="col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" ng-show="setupShow">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="regBox img-rounded">
+        <h4 class="snap1 regDisp" >Company Information</h4>
+        <div class="form-group ">
+            <input type="text" placeholder="Company Name" class="snap mainInput" ng-model="newCompany.name" />
+            <input type="text" placeholder="Company Address" class="snap mainInput" ng-model="newCompany.address" />
+            <input type="text" placeholder="Company Phone Number" class="snap mainInput" ng-model="newCompany.phoneNumber" />
+            <input type="text" placeholder="Company Stock Symbol" class="snap mainInput" ng-model="newCompany.stockName" />
+            <button type="submit" class="btn btn-info noB btnClick" ng-click="CompanyInfo()" >Submit</button>
+
+            <div ng-show="company_success" style="color: cyan" class="snap1 noB">
+                <h4>{{ company_message }}</h4></div>
+        </div>
+    </div>
+
+</div>
+
+
+<!------------------------------------------------update company ----------------------------------------------->
+
+<div class="col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" ng-show="updateShow">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="regBox img-rounded">
+        <h4 class="snap1 regDisp">Update Company Information</h4>
+        <div class="form-group ">
+            <input type="text" placeholder="{{ 'Company Name | ' + company.name}}" class="snap mainInput" ng-model="upCompany.name" />
+            <input type="text" placeholder="{{ 'Company Address | ' + company.address}}" class="snap mainInput" ng-model="upCompany.address" />
+            <input type="text" placeholder="{{ 'Company Phone | ' + company.phone}}" class="snap mainInput" ng-model="upCompany.phoneNumber" />
+            <input type="text" placeholder="{{ 'Company Stock Name | ' + company.stockName}}" class="snap mainInput" ng-model="upCompany.stockName" />
+            <button type="submit" class="btn btn-info noB btnClick" ng-click="CompanyInfoUpdate()" >Update</button>
+
+            <div ng-show="company_success" style="color: cyan" class="snap1 noB">
+                <h4>{{ company_message }}</h4></div>
+        </div>
+    </div>
+
+</div>

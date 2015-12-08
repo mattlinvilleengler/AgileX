@@ -1,0 +1,55 @@
+<!------------------------------------------------Header----------------------------------------------->
+<div class="row" style="margin-top: 0px; ">
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <h1><span class="headerTag">Rock Dev</span></h1>
+        <hr/>
+
+
+
+<!------------------------------------------------Add Project Form----------------------------------------------->
+
+<div class="responsive col-xs-12 col-md-6  ">
+    <div class="regBox img-rounded">
+        
+        <div class="form-group ">
+            <input type="text" placeholder="Rock Name" class="snap mainInput" ng-model="project.name"/>
+            <textarea type="text" rows="5" placeholder="Project Description" class="snap mainInput" ng-model="project.description" ></textarea>
+
+            <div class="snapBig">
+                <span><input type="text" placeholder="Rock Start Date | " class="snap2 mainInput" disabled /></span><span><input type="date" class="snap3 mainInput" ng-model="project.startDate" /></span>
+            </div>
+            <div class="snapBig">
+                <span><input type="text" placeholder="Total Sprints in Rock | " class="snap2 mainInput" disabled/></span><span><input type="number" placeholder="1" class="snap3 mainInput" ng-model="project.sprints"/></span>
+            </div>
+
+            <div class="snapBig">
+                <span><input type="text" placeholder="Sprint Length per Rock| " class="snap2 mainInput" disabled/></span><span><input type="number" placeholder="1" class="snap3 mainInput" ng-model="project.sprintLength"/></span>
+            </div>
+            <div class="snapBig">
+                     <span><input type="text" placeholder="Days Off Per Rock | " class="snap2 mainInput" disabled/></span><span><input type="number" placeholder="1" class="snap3 mainInput" ng-model="project.daysOffPerSprint"/></span>
+            </div>
+        </div>
+    </div>
+        </div>
+            <div class="responsive col-xs-12 col-md-6  ">
+    <div class="regBox img-rounded">
+
+            
+       
+
+            <input type="text" placeholder="{{ selectedDevelopersDisp }}" class="snap mainInput" disabled/>
+            <button class="btn btn-default" ng-repeat="users in userNames" ng-click="selectUser(users)" style="margin-left: 10px; border: none; margin-bottom: 10px; background-color: {{users.backgroundColor}}; color: {{users.color}};">{{users.name}}</button>
+
+
+            <input type="text" placeholder="Upload Design Spec" class="snap mainInput" ng-model="project.designSpec" />
+
+            <input type="text" placeholder="Upload Technical Spec" class="snap mainInput" ng-model="project.techSpec" />
+            <div ng-show="projectSuccess" style="color: cyan">
+                <h4>{{ projectSuccessMessage }}</h4></div>
+            <br/>
+            <button type="submit" class="btn btn-info btnClick" ng-click="CreateProject()" >CREATE</button>
+        </div>
+    </div>
+
+</div>

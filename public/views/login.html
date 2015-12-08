@@ -1,0 +1,60 @@
+<!------------------------------------------------Login / register Buttons ----------------------------------------------->
+
+<div class="col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" style="margin-top: 95px;" ng-show="buttons">
+
+    <center>
+        <h1 class="regHead">AgileX</h1><hr/>
+        <span><button class="btn btn-default btn-lg btnLogin" ng-click="ShowLogin()" >Login</button></span><span style="margin-left:25px;"><button class="btn btn-default btn-lg btnLoginOther" ng-click="ShowRegister()" >Sign Up</button></span><br/>
+        <hr/><h1 class="regHeadLow">AgileX</h1>
+
+    </center>
+</div>
+
+
+<!------------------------------------------------Login ----------------------------------------------->
+
+<div class="col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" ng-show="loginShow">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="regBox img-rounded">
+        <h4 class="snap1 regDisp">Login</h4>
+        <div class="form-group ">
+            <input type="text" placeholder="Name" class="snap mainInput" ng-model="user.name" />
+            <input type="password" placeholder="Password" class="snap mainInput" ng-model="user.password" />
+            <button type="submit" class="btn btn-default noB btnClick" ng-click="LoginUser()" >Login</button>
+
+            <div ng-show="login_success" style="color: cyan" class="snap1 noB">
+                <h4>{{ login_message }}</h4></div>
+        </div>
+    </div>
+
+</div>
+
+<!------------------------------------------------Register----------------------------------------------->
+
+<div class="col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" ng-show="registerShow">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="regBox img-rounded">
+        <h4 class="snap1 regDisp">Register</h4>
+        <div class="form-group ">
+            <input type="text" placeholder="Name" class="snap mainInput" ng-model="user.name"   />
+            <input type="email" placeholder="Email" class="snap mainInput" ng-model="user.email"  />
+            <input type="password" placeholder="Password" class="snap mainInput" ng-model="user.password" />
+            <input type="password" placeholder="Re-Enter Password" class="snap mainInput" ng-model="user.passwordCheck" />
+            <input type="text" placeholder="Registration Key" class="snap mainInput" ng-model="user.key"/>
+            <button type="submit" class="btn btn-default noB btnClick" ng-click="RegisterUser()">Create Account</button>
+            <div ng-show="register_success" style="color: #4285f4" class="snap1">
+                <h4>{{ register_message }}</h4></div>
+            <div ng-show="registration_error_check" style="color: red" class="snap1">
+                <h4>{{ register_message }}</h4></div>
+
+
+        </div>
+    </div>
+
+</div>

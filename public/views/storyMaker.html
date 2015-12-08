@@ -1,0 +1,62 @@
+<!------------------------------------------------Header----------------------------------------------->
+<div class="row" style="margin-top: 0px; ">
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <h1><span class="headerTag">Story Dev</span></h1>
+        <hr/>
+  
+
+
+<!------------------------------------------------Story Dev Form----------------------------------------------->
+
+
+<div class="responsive col-xs-12 col-md-6 ">
+    <div class="regBox img-rounded">
+
+        <div class="form-group ">
+            <select class="snap mainInput" ng-model="story.project" ng-change="formDisp()" >
+                <option ng-repeat="projects in projectNames">{{ projects.name }}</option>
+            </select>
+            <input type="text" placeholder="{{ 'Story ID | ' + newId}}" class="snap mainInput" disabled/ >
+            <input type="text" placeholder="Story Name" class="snap mainInput" ng-model="story.name" />
+
+            <select class="snap mainInput" ng-model="story.sprint" mainInput>
+                <option ng-repeat="sprints in totalSprints">{{ sprints.sprintName }}</option>
+            </select>
+
+            <input type="text" placeholder="{{ selectedDevelopersDisp }}" class="snap mainInput" disabled/ >
+            <button class="btn btn-default" ng-repeat="users in userNames" ng-click="selectUser(users)" style=" border: none; margin-left: 10px; margin-bottom: 10px; background-color: {{users.backgroundColor}}; color: {{users.color}};">{{users.name}}</button>
+
+            <div class="snapBig">
+                <span><input type="text" placeholder="Effort to complete | " class="snap2 mainInput" disabled/ ></span><span><input type="number" placeholder="1" class="snap3 mainInput" ng-model="story.days"/></span>
+            </div>
+            
+            <input type="text" placeholder="Theme" class="snap mainInput" ng-model="story.theme" / >
+        </div>
+    </div>
+        </div>
+    
+<div class="responsive col-xs-12 col-md-6 ">
+    <div class="regBox img-rounded">
+            
+            <input type="text" placeholder="As A" class="snap mainInput" ng-model="story.as" / >
+            <input type="text" placeholder="I Want To" class="snap mainInput" ng-model="story.iwant" / >
+            <input type="text" placeholder="So That I can" class="snap mainInput" ng-model="story.sothat" / >
+            <div ng-repeat="steps in steplist">
+                <input type="text" placeholder="Step" class="snap mainInput" ng-model="steps.step" / >
+                <input type="text" placeholder="Then" class="snap mainInput" ng-model="steps.then" / >
+            </div>
+            <button type="button" class="btn btn-default" style="background-color: transparent; border: none;" ng-click="AddStep()"><span style="color: #49FBBC; font-size: 30px;">+ </span><span style="color: white"> Add Step</span></button>
+
+            <textarea class="snap mainInput" rows="2" placeholder="Notes" ng-model="story.notes" ></textarea>
+            <br/>
+            <div ng-show="storySuccess" style="color: cyan">
+                <h4>{{ storySuccessMessage }}</h4></div>
+            <br/>
+            <button type="submit" class="btn btn-info btnClick" ng-click="CreateStory()">CREATE</button>
+        </div>
+    </div>
+
+
+
+</div>

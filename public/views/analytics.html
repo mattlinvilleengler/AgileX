@@ -1,0 +1,195 @@
+<!------------------------------------------------Header ----------------------------------------------->
+
+<div class="row" style="margin-top: 0px; ">
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <h1><span class="headerTag">Analytics</span></h1>
+        <hr/>
+    </div>
+</div>
+
+
+<!------------------------------------------------Sprint ID Buttons ----------------------------------------------->
+
+<div class="row " >
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div style="margin-left: 50px;">
+            
+            
+            <button class="btn btn-default limeBtn" ng-repeat="story in data1"  ng-click="ChooseData( $index )">{{ "Story ID | " + story.id }}</button>
+        </div>
+    </div>
+</div>
+
+<!------------------------------------------------Graphs and data display----------------------------------------------->
+
+<div class="row" style="margin-top: 25px; margin-bottom:75px;">
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+
+        <div class="effort">
+            <h3>Effort</h3></div>
+
+        <div class="effortY">
+            <div class="effortYBox">
+                <h5>10</h5></div>
+            <div class="effortYBox ">
+                <h5>9</h5></div>
+            <div class="effortYBox">
+                <h5>8</h5></div>
+            <div class="effortYBox">
+                <h5>7</h5></div>
+            <div class="effortYBox">
+                <h5>6</h5></div>
+            <div class="effortYBox">
+                <h5>5</h5></div>
+            <div class="effortYBox">
+                <h5>4</h5></div>
+            <div class="effortYBox">
+                <h5>3</h5></div>
+            <div class="effortYBox">
+                <h5>2</h5></div>
+            <div class="effortYBox">
+                <h5>1</h5></div>
+            <div class="effortYBox">
+                <h5>0</h5></div>
+        </div>
+
+        <div class="graphBox">
+
+            <table style="margin-left:0px;">
+                <tr>
+
+                    <td class="animate-repeat graphTD" ng-repeat="effortInfo in data1[ whichData.ind ].efforts">
+                        <div class="bar" style="height:{{ 36 * effortInfo.effort }}px; "></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td ng-repeat="effortInfo in data1[ whichData.ind ].efforts" class="graphTD2">
+                        <div style="width: 50px;  margin-left:30px; ">
+                            <p style=" font-size: 10px; padding-top: 10px; color: dateIN.color.$index">{{ effortInfo.date }}</p>
+                        </div>
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+        </div>
+
+
+        <!-- <div style="float: left; margin-left: 12px;  margin-top: 10px;border-color: white; float: left; height:50px; width: 650px; margin-bottom: 15px;">
+                
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>0</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>1</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>2</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>3</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>4</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>5</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>6</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>7</h5></span>
+         
+            </div>-->
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------Other graph, backup. ----------------------------------------------->
+
+<!--
+
+
+<div class="row" style="margin-top: 0px; ">
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <h1><span style="font-size: 55px; font-style: bold; color: white">Analytics</span></h1>
+        <hr/>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 0px; margin-bottom:25px;">
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div style="margin-left: 50px;">
+        <button class="btn btn-default" ng-repeat="story in data1" style="margin-right: 15px; background-color: #95FCD7; border: none;" ng-click="ChooseData( $index )">{{ "Story ID |  " + story.id }}</button>
+        </div>
+    </div></div>
+
+<div class="row" style="margin-top: 0px; margin-bottom:50px;">
+
+        <div class="col-xs-12 col-md-8 col-md-offset-2" style=" overflow: scroll; ">
+            
+            <div >
+            
+            <div style="height:60px; width: 50px; float: left; color: white; -ms-transform: rotate(270deg); -webkit-transform: rotate(270deg); 
+    transform: rotate(270deg); margin-top:160px;"><h3>Effort</h3></div>
+            
+            <div style="height:400px; width: 25px; float: left; color: white;margin-left:20px; ">
+                <div style="height:25px; width: 50px; "><h5>10</h5></div>
+                <div style="height:25px; width: 50px; "><h5>9</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>8</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>7</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>6</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>5</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>4</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>3</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>2</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>1</h5></div>
+                <div style="height:25px; width: 50px; border-bottom: solid:"><h5>0</h5></div>
+            </div>
+            
+            <div style="float: left; margin-left: 15px;  margin-top: 10px;border-color: white; border-left: solid; border-bottom: solid; height:365px; width: 450px; margin-bottom: 25px; ">
+                
+                <table  style="position: absolute; bottom: -7px; margin-left:25px; overflow: scroll;">
+                    <tr>
+                        <td class="animate-repeat" ng-repeat="effortInfo in data1[ whichData.ind ].efforts" style="vertical-align: bottom;"><div class="bar"  style="height:{{ 36 * effortInfo.effort }}px; width: 50px;  margin-right:30px; "></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td  ng-repeat="effortInfo in data1[ whichData.ind ].efforts" style="vertical-align: bottom; height:25px; width: 50px; margin-right:30px; color: white">
+                           <p style=" font-size: 10px; padding-top: 10px; color: dateIN.color.$index">{{ effortInfo.date }}</p>
+                        </td>
+       
+                    </tr>
+               
+                    
+                    </table>
+         
+         
+            </div>
+            
+           <!-- <div style="float: left; margin-left: 12px;  margin-top: 10px;border-color: white; float: left; height:50px; width: 650px; margin-bottom: 15px;">
+                
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>0</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>1</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>2</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>3</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>4</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>5</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>6</h5></span>
+                <span style="height:25px; width: 80px; color: white; float: left;"><h5>7</h5></span>
+         
+            </div>
+            
+       
+                
+                </div>
+            
+            </div>
+        </div>
+-->
