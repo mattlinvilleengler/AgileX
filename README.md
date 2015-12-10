@@ -1,11 +1,11 @@
-AgileX, a project managment tool
+#AgileX, a project managment tool
 
-Video Walkthrough.   https://youtu.be/l1UAIBPXgsY   ----
+###Video Walkthrough.   https://youtu.be/l1UAIBPXgsY   ----
 
 I built AgileX as a school project. It's currently one and a half weeks in development.
 It's built with html / css / javascript / angular / node / express / and mongodb.
 It has many features and still has many to be added.
-Features
+###Features
 Messaging | send, reply, mark as urgent, notification of new messages, and delete.
 
 Add Projects and Stories | choose contributing users, effort for each project, notes, etc...
@@ -16,7 +16,7 @@ Login / Registration.
 
 Company Info | relevant news and info from various api's.
 
-The project is still in development and has many features to be added
+###The project is still in development and has many features to be added
 
 Calender | add events, rsvp to events, etc...
 
